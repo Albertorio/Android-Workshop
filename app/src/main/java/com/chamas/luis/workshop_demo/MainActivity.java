@@ -1,6 +1,8 @@
 package com.chamas.luis.workshop_demo;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -79,11 +81,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void change(View view) {
         tempNum = Double.parseDouble(temp.getText().toString());
-
         Intent intent = new Intent(this, ChangeTemp.class);
         Bundle b = new Bundle();
-        b.putDouble("tempNum", tempNum);
+        intent.putExtra("tempNum", tempNum);
+        if(cel.isChecked()){
+            intent.putExtra("tempMed", "c");
+        }
+        else{
+            intent.putExtra("tempMed", "f");
+        }
+
+
         startActivity(intent);
+
 
 
     }
